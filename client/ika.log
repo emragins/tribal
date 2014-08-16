@@ -11,14 +11,260 @@ Initializing Input
 Initializing sound
 Initing Python
 Executing system.py
-
-Traceback (most recent call last):
-  File ".\system.py", line 11, in <module>
-    from window import windowManager
-  File "src\window.py", line 4, in <module>
-    from mouse import mouse
-  File "src\mouse.py", line 14
-    def __init__:
-                ^
-SyntaxError: invalid syntax
+ testing has point 5 470 in 200 0 200 0
+false
+testing has point 5 606 in 200 0 200 0
+false
+testing has point 405 470 in 200 0 200 0
+false
+testing has point 405 606 in 200 0 200 0
+false
+testing has point 200 200 in 300 0 300 0
+false
+testing has point 200 273 in 300 0 300 0
+false
+testing has point 293 200 in 300 0 300 0
+false
+testing has point 293 273 in 300 0 300 0
+false
+testing has point 5 470 in 300 0 300 0
+false
+testing has point 5 606 in 300 0 300 0
+false
+testing has point 405 470 in 300 0 300 0
+false
+testing has point 405 606 in 300 0 300 0
+false
+testing has point 200 200 in 400 0 400 0
+false
+testing has point 200 273 in 400 0 400 0
+false
+testing has point 293 200 in 400 0 400 0
+false
+testing has point 293 273 in 400 0 400 0
+false
+testing has point 300 300 in 400 0 400 0
+false
+testing has point 300 370 in 400 0 400 0
+false
+testing has point 450 300 in 400 0 400 0
+false
+testing has point 450 370 in 400 0 400 0
+false
+testing has point 5 470 in 400 0 400 0
+false
+testing has point 5 606 in 400 0 400 0
+false
+testing has point 405 470 in 400 0 400 0
+false
+testing has point 405 606 in 400 0 400 0
+false
+testing has point 175 466 in 200 93 200 73
+false
+testing has point 175 466 in 300 150 300 70
+false
+testing has point 175 466 in 400 177 400 61
+false
+testing has point 175 466 in 5 400 470 136
+false
+testing has point 169 479 in 200 93 200 73
+false
+testing has point 169 479 in 300 150 300 70
+false
+testing has point 169 479 in 400 177 400 61
+false
+testing has point 169 479 in 5 400 470 136
+true
+testing point 164 9
+<header.Header instance at 0x06FFE198> 0 400 0 15
+testing has point 164 9 in 0 400 0 15
+true
+testing has point 164 9 in 370 15 0 15
+false
+testing has point 164 9 in 385 15 0 15
+false
+testing has point 164 9 in 0 370 0 15
+true
+<chat.ChatBox instance at 0x06FFE120> 0 400 15 121
+testing has point 164 9 in 0 400 15 121
+false
+testing has point 200 200 in 9 400 472 136
+false
+testing has point 200 273 in 9 400 472 136
+false
+testing has point 293 200 in 9 400 472 136
+false
+testing has point 293 273 in 9 400 472 136
+false
+testing has point 300 300 in 9 400 472 136
+false
+testing has point 300 370 in 9 400 472 136
+false
+testing has point 450 300 in 9 400 472 136
+false
+testing has point 450 370 in 9 400 472 136
+false
+testing has point 400 400 in 9 400 472 136
+false
+testing has point 400 461 in 9 400 472 136
+false
+testing has point 577 400 in 9 400 472 136
+false
+testing has point 577 461 in 9 400 472 136
+false
+testing has point 200 200 in 29 400 469 136
+false
+testing has point 200 273 in 29 400 469 136
+false
+testing has point 293 200 in 29 400 469 136
+false
+testing has point 293 273 in 29 400 469 136
+false
+testing has point 300 300 in 29 400 469 136
+false
+testing has point 300 370 in 29 400 469 136
+false
+testing has point 450 300 in 29 400 469 136
+false
+testing has point 450 370 in 29 400 469 136
+false
+testing has point 400 400 in 29 400 469 136
+false
+testing has point 400 461 in 29 400 469 136
+false
+testing has point 577 400 in 29 400 469 136
+false
+testing has point 577 461 in 29 400 469 136
+false
+testing has point 200 200 in 41 400 437 136
+false
+testing has point 200 273 in 41 400 437 136
+false
+testing has point 293 200 in 41 400 437 136
+false
+testing has point 293 273 in 41 400 437 136
+false
+testing has point 300 300 in 41 400 437 136
+false
+testing has point 300 370 in 41 400 437 136
+false
+testing has point 450 300 in 41 400 437 136
+false
+testing has point 450 370 in 41 400 437 136
+false
+testing has point 400 400 in 41 400 437 136
+false
+testing has point 400 461 in 41 400 437 136
+true
+testing has point 200 200 in 28 400 430 136
+false
+testing has point 200 273 in 28 400 430 136
+false
+testing has point 293 200 in 28 400 430 136
+false
+testing has point 293 273 in 28 400 430 136
+false
+testing has point 300 300 in 28 400 430 136
+false
+testing has point 300 370 in 28 400 430 136
+false
+testing has point 450 300 in 28 400 430 136
+false
+testing has point 450 370 in 28 400 430 136
+false
+testing has point 400 400 in 28 400 430 136
+false
+testing has point 400 461 in 28 400 430 136
+true
+testing has point 200 200 in 21 400 429 136
+false
+testing has point 200 273 in 21 400 429 136
+false
+testing has point 293 200 in 21 400 429 136
+false
+testing has point 293 273 in 21 400 429 136
+false
+testing has point 300 300 in 21 400 429 136
+false
+testing has point 300 370 in 21 400 429 136
+false
+testing has point 450 300 in 21 400 429 136
+false
+testing has point 450 370 in 21 400 429 136
+false
+testing has point 400 400 in 21 400 429 136
+false
+testing has point 400 461 in 21 400 429 136
+true
+testing has point 484 414 in 200 93 200 73
+false
+testing has point 484 414 in 300 150 300 70
+false
+testing has point 484 414 in 18 400 430 136
+false
+testing has point 484 414 in 400 177 400 61
+true
+testing point 84 14
+<header.Header instance at 0x070230D0> 0 177 0 15
+testing has point 84 14 in 0 177 0 15
+true
+testing has point 84 14 in 147 15 0 15
+false
+testing has point 84 14 in 162 15 0 15
+false
+testing has point 84 14 in 0 147 0 15
+true
+<menu.Menu3 instance at 0x06FFEF80> 0 55 15 46
+testing has point 84 14 in 0 55 15 46
+false
+testing has point 200 200 in 508 177 332 61
+false
+testing has point 200 273 in 508 177 332 61
+false
+testing has point 293 200 in 508 177 332 61
+false
+testing has point 293 273 in 508 177 332 61
+false
+testing has point 300 300 in 508 177 332 61
+false
+testing has point 300 370 in 508 177 332 61
+false
+testing has point 450 300 in 508 177 332 61
+false
+testing has point 450 370 in 508 177 332 61
+false
+testing has point 18 430 in 508 177 332 61
+false
+testing has point 18 566 in 508 177 332 61
+false
+testing has point 418 430 in 508 177 332 61
+false
+testing has point 418 566 in 508 177 332 61
+false
+testing has point 388 316 in 200 93 200 73
+false
+testing has point 388 316 in 300 150 300 70
+true
+testing point 88 16
+<loginmenu.LoginMenu instance at 0x06FFEDC8> 0 150 0 70
+testing has point 88 16 in 0 150 0 70
+true
+testing has point 88 16 in 50 45 40 19
+false
+testing has point 88 16 in 20 104 20 13
+false
+testing has point 88 16 in 20 104 5 13
+true
+testing has point 385 329 in 200 93 200 73
+false
+testing has point 385 329 in 300 150 300 70
+true
+testing point 85 29
+<loginmenu.LoginMenu instance at 0x06FFEDC8> 0 150 0 70
+testing has point 85 29 in 0 150 0 70
+true
+testing has point 85 29 in 50 45 40 19
+false
+testing has point 85 29 in 20 104 20 13
+true
 ---- shutdown ----

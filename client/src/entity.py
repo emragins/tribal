@@ -34,8 +34,9 @@ from mapdata import mapData
 
 class Entity(ConnectionListener):
 	
-	def __init__(self, id, x, y):
+	def __init__(self, id, name, x, y):
 		
+		self.name = name
 		self.id = id
 		self.sprite = sprite.Sprite("test")
 		self.player = 0
@@ -43,45 +44,54 @@ class Entity(ConnectionListener):
 		self.x = x
 		self.y = y
 		
+		print x,y,self.x,self.y
+		
 		self.moveQueue = MoveQueue(self)
 
-	def draw(self):
+	def Draw(self):
 		
-		data.fonts["system"].Print(self.sprite.x, self.sprite.y-10, self.id)
+		#print self.x, self.y
+		
+		data.fonts["system"].Print(self.x, self.y-10, self.name)
 		self.sprite.Draw(self.x, self.y)
 		
-	def update(self):
-	
-		self.sprite.update()
-		self.moveQueue.processQueue()
+	def Update(self):
 		
 		if self.player:
-			if self.moveQueue.isEmpty():
-				
-				#if up and no collision up
-					connection.Send({'action':'move', 'direction':direction["up"].number})
-					self.moveQueue.append(direction["up"])
-				#elif down and no collision down
-					connection.Send({'action':'move', 'direction':direction["down"].number})
-					self.moveQueue.append(direction["down"])
-				#elif left and no collision left
-					connection.Send({'action':'move', 'direction':direction["left"].number})
-					self.moveQueue.append(direction["left"])
-				#elif right and no collision right
-					connection.Send({'action':'move', 'direction':direction["right"].number})
-					self.moveQueue.append(direction["right"])
+			if self.moveQueue.IsNearEmpty():
+				##add collision detection
+				if ika.Input.keyboard["UP"].Position():
+					connection.Send({'action':'Move', 'direction':direction["up"].number})
+					self.moveQueue.Append(direction["up"])
+					
+				elif ika.Input.keyboard["DOWN"].Position():
+					connection.Send({'action':'Move', 'direction':direction["down"].number})
+					self.moveQueue.Append(direction["down"])
+					
+				elif ika.Input.keyboard["LEFT"].Position():
+					connection.Send({'action':'Move', 'direction':direction["left"].number})
+					self.moveQueue.Append(direction["left"])
+					
+				elif ika.Input.keyboard["RIGHT"].Position():
+					connection.Send({'action':'Move', 'direction':direction["right"].number})
+					self.moveQueue.Append(direction["right"])
+					
+		self.sprite.Update()
+		self.moveQueue.ProcessQueue()
+					
+		self.Pump()
 			
 			
-	def Network_move(self, data):
+	def Network_Move(self, data):
 		#id, direction
 		#Direction is an integer mapping to the direction object's index.
 		#Adds a direction to the move Queue.
 		
 		if data['id'] == self.id:
-			self.moveQueue.append(direction[data['direction']])
+			self.moveQueue.Append(direction[data['direction']])
 		
 		
-	def Network_setPosition(self, data):
+	def Network_SetPosition(self, data):
 		#id,x,y,direction
 		if data['id'] == self.id:
 			self.x = data['x']
@@ -94,19 +104,28 @@ class MoveQueue:
 		
 		self.queue = [ ]
 		self.entity = entity
-		self.speed = 5
+		self.speed = 2
 		self.progress = 0
 		
-	def isEmpty(self):
+	def IsNearEmpty(self):
+
+		if len(self.queue) == 1 and self.progress+(self.speed*3) >= mapData.tileHeight:
+			return 1
+		elif len(self.queue) == 0:
+			return 1
+		else:
+			return 0
+		
+	def IsEmpty(self):
 		if len(self.queue) == 0:
 			return 1
 		return 0
 		
-	def append(self, command):
+	def Append(self, command):
 
 		self.queue.append(command)
 		
-	def processQueue():
+	def ProcessQueue(self):
 		#Moves our entity as specified by the queue.	
 		
 		if len(self.queue) > 0:
@@ -121,7 +140,7 @@ class MoveQueue:
 					self.progress = 0
 					self.queue.pop(0)
 				
-			if self.queue[0] == direction["down"]:
+			elif self.queue[0] == direction["down"]:
 				self.entity.y += self.speed
 				self.progress += self.speed
 				
@@ -131,7 +150,7 @@ class MoveQueue:
 					self.progress = 0
 					self.queue.pop(0)
 				
-			if self.queue[0] == direction["left"]:
+			elif self.queue[0] == direction["left"]:
 				self.entity.x -= self.speed
 				self.progress += self.speed
 				
@@ -141,7 +160,7 @@ class MoveQueue:
 					self.progress = 0
 					self.queue.pop(0)
 				
-			if self.queue[0] == direction["right"]:
+			elif self.queue[0] == direction["right"]:
 				self.entity.x += self.speed
 				self.progress += self.speed
 				

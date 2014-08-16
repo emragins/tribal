@@ -2,19 +2,31 @@ import ika
 from PodSixNet.Connection import ConnectionListener, connection
 from data import data
 
+import window, subwindow
+import text
 
-class ChatBox(ConnectionListener): 
+class ChatBox(ConnectionListener, subwindow.Subwindow): 
 	
 	def __init__(self):
-		
 		self.font = data.fonts["system"]
+		self.maxLines = 10 #number of lines that can be displayed at any one time.
+				
+		##set numbers are temp
+		self.x = 5
+		self.y = 470
+		self.width = 400
+		self.height = (self.maxLines+1)*(self.font.height+2)
+		self.id = 'chatbox'
+		
+		subwindow.Subwindow.__init__(self, self.width, self.height, self.id)
+		window.NewWindow(self, self.x, self.y, self.width, self.height, self.id)
 		
 		self.lines = [] #currently displayed lines
-		self.buffer = '' #the text that the user is currently typing.
-		self.maxLines = 10 #number of lines that can be displayed at any one time.
 		
-	
-	def addLine(self, text):
+		self.slots['text input'] = text.InputBox(0, self.height - self.font.height - 4, self.width-4, onEnter = self.SendText)
+		
+		
+	def AddLine(self, text):
 		"""
 			Adds a single line of text to the chat box
 		"""
@@ -23,71 +35,38 @@ class ChatBox(ConnectionListener):
 		
 		if len(self.lines) > self.maxLines:
 			self.lines.pop(0)
-
-	def draw(self):
+	
+	
+	def Draw(self, givenX, givenY):
 		"""
 			Draws the chat box and its contents.
 		"""
+		#Draw(self, givenX, givenY)
 		
-		y=0
+		y=givenY
 		
 		for line in self.lines:
 			
-			self.font.Print(0,y,line)
+			self.font.Print(givenX,y,line)
 			y+= 10
 			
-					
-		self.font.Print(0,590, ">"+self.buffer)
+		self.slots['text input'].Draw(givenX, givenY)
+		
+		
+	def Update(self):
 
-	def processChar(self, char):
-		"""
-			Processes a single character for enter or shift processing.
-		"""
-		
-		kb = ika.Input.keyboard
-		
-		special = ['~_+{}|:"<>?', "`-=[];',./"]
-		
-		if char == '\r': #return key
-			connection.Send({"action":"message", "message":self.buffer})
-			self.buffer = ''
-		elif kb['LSHIFT'].Position() or kb['RSHIFT'].Position():
-			if char.isalpha():
-				char = char.upper()
-			elif char.isdigit():
-				char = ')!@#$%^&*('[int(char)]
-			elif char in special[1]:
-				char = special[0][special[1].index(char)]
-				
-		return char 
-		
-	def update(self):
-		"""
-			Checks for keyboard input and add it to the buffer.
-		"""
-		
-		kb = ika.Input.keyboard
-		
-		if kb.WasKeyPressed(): 
-			char = kb.GetKey()
-			
-			char = self.processChar(char)
-			
-			if char == '\x08': #backspace
-				self.buffer = self.buffer[:-1]
-			elif char == '\x7f': #delete
-				pass
-			else:
-				self.buffer += char
-				
 		self.Pump()
+
 		
 	#receives messages from the server
-	def Network_message(self, data):
+	def Network_Chat(self, message):
 		"""
 			Data: message
 			
 			Adds the received message to the text box.
 		"""
-
-		self.addLine(data['message'])
+		self.AddLine(message['text'])
+		
+	def SendText(self):
+		connection.Send({'action':'Chat', 'text': self.slots['text input'].GetText()})
+		self.slots['text input'].Clear()

@@ -17,7 +17,9 @@ class Sprite:
 		self.frame = 0
 		
 		
-	def draw(self, x, y):
+	def Draw(self, x, y):
 		
 		self.images[self.frame].Blit(x, y)
 		
+	def Update(self):
+		pass 

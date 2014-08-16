@@ -2,18 +2,14 @@ class Manager:
 	"""
 		Maintains a dictionary of objects to draw and update.
 	"""
-	
-	"""
-	'dictionary changed sizes during iteration'
-	
-	Unless you know a way around this, or maybe I'm just doing something wrong,
-	we are going to have to change the manager's items to lists instead. 
-	With the way things are set up, I don't think it would make a difference, anyway.
-	"""
-	
+		
 	def __init__(self):
 		
 		self.dict = {}
+		
+	def Has(self, key):
+
+		return self.dict.has_key(key)
 		
 	def Get(self, key):
 		return self.dict[key]

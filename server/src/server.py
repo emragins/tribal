@@ -3,7 +3,8 @@ from PodSixNet.Server import Server
 import time
 import channel
 import sys
-
+import messages
+from mapmanager import mapManager
 
 
 '''
@@ -36,8 +37,11 @@ class GameServer(Server):
 	def __init__(self, *args, **kwargs):
 		Server.__init__(self, *args, **kwargs)
 		
-		self.channels ={} #Dictionary mapping channels to their account name.
+		self.gameChannels ={} #Dictionary mapping channels to their account name.
+		#It's named gameChannels because PodSix uses channels.
 		self.loginChannels = [] #List of channels that haven't logged in yet.
+		
+		self.playerEntities = {} ##Temporary list of player entities.
 		
 		print 'Server launched'
 
@@ -46,27 +50,33 @@ class GameServer(Server):
 	#------------------------------------------------------------------------------
 
 	def Connected(self, channel, addr):
-		print "Connection from %s" % (addr)
+		print "Connection from %s" % (str(addr))
 		
 		self.loginChannels.append(channel)
 
-	def LoggedIn(self, name, channel):
+	def LogIn(self, name, channel):
 		
 		print "%s logged in" % (name)
 		
 		self.loginChannels.remove(channel)
 		
-		self.channels[name] = channel
+		self.gameChannels[name] = channel
 		
-	def LoggedOut(self, name):
+		self.SendToAll(messages.Chat("%s has joined!" % name))
 		
-		if self.channels.has_key(name):
+	def LogOut(self, name):
 		
-			del self.channels[name]
+		if self.gameChannels.has_key(name):
+		
+			del self.gameChannels[name]
+			
+	def LogInCancelled(self, channel):
+		
+		self.loginChannels.remove(channel)
 			
 	def ChannelActive(self, name):
 		
-		return self.channels.has_key(name)
+		return self.gameChannels.has_key(name)
 		
 	#------------------------------------------------------------------------------
 	#Communcation functions.
@@ -76,13 +86,13 @@ class GameServer(Server):
 
 		for name in names:
 			
-			if self.channels.has_name(name):
-				self.channels[name].Send(message)
+			if self.gameChannels.has_name(name):
+				self.gameChannels[name].Send(message)
 				
 		
 	def SendToAllExcept(self, name, message):
 		
-		for cname, c in self.channels.iteritems():
+		for cname, c in self.gameChannels.iteritems():
 			
 			if cname != name:
 				
@@ -90,7 +100,7 @@ class GameServer(Server):
 		
 	def SendToAll(self, message):
 		
-		for c in self.channels.itervalues():
+		for c in self.gameChannels.itervalues():
 			
 			c.Send(message)
 
@@ -104,4 +114,4 @@ class GameServer(Server):
 			time.sleep(0.0001)
 
 			
-server = GameServer(localaddr=("127.0.0.1", 9126))
+server = GameServer(localaddr=("", 9126))

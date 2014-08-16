@@ -12,6 +12,8 @@ class GameData:
 	
 	def __init__(self):
 		
+		self.kbControlList = []	#array for definite order
+		
 		self.fonts = {
 					"system": ika.Font("system.fnt")
 				}
@@ -21,8 +23,15 @@ class GameData:
 					"black": ika.RGB(0,0,0),
 					"dark blue": ika.RGB(0,0, 100),
 					"light grey": ika.RGB(100, 100, 100),
-					"red": ika.RGB(255, 0, 0)
+					"red": ika.RGB(255, 0, 0),
+					"orange": ika.RGB(150, 50, 50),
+					"green": ika.RGB(0,255,0),
+					"blue": ika.RGB(0, 0, 255)
 				}
+				
+		self.spriteImages = {
+						"test":[ika.Image("images\\spritetest.png")] 
+					}
 		
 	
 data = GameData()

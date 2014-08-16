@@ -1,7 +1,7 @@
 import ika
 #Portions of the code originally created by Hatchet.
 
-def loadFrames(x,y,img, width, height, span,xdist,ydist, numtiles):    
+def LoadFrames(x,y,img, width, height, span,xdist,ydist, numtiles):    
 	"""
 	This is a simple function that takes any image that's formatted like a tileset and rips the tiles into a
 	list which is then returned. 

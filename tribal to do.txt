@@ -1,0 +1,34 @@
+X -password should be ****
+X -make login actually work
+
+
+
+-move the server address entirely to a file
+
+
+-resizable text box
+	you should be able to expand/shrink the chat box
+-TEXT SCROLLING
+-but the borders are off 
+	and textbar burries rest
+-you need a scroll bar too come to think of it
+-I uh... need to add wrap around, too
+
+-not closable chat window (don't do that, you can't get it back... and it'll probably 		crash the game)
+	-hmm... maybe instead of closing chat window I'll just have it so x hides it
+	-because otherwise bad shit happens
+
+[18:28] <sal> I guess no movement, but something easy like esc deselects 
+[18:29] <SDHawk> you really need to add that enter to talk
+
+
+
+X - untested - 
+[18:16] <SDHawk> when I hit enter after logging in a gain
+[18:17] <SDHawk> it tried to login again
+[18:17] <SDHawk> even though the login window was closed
+[18:18] <sal> I don't know why.. shouldn't have.... unless.... stuff dies, but dying doesn't deselect
+
+
+
+[17:27] <SDHawk> overall good work so far

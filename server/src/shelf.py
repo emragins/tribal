@@ -9,38 +9,38 @@ Option now exists to use hard-coded keys in rest of program
 class Shelf:
 	def __init__(self, filename = None):
 		self.filename = filename
-		self.is_open = 0
+		self.isOpen = 0
 		self.operator = None
 		self.key = str(self.filename)
 		
-	def open(self, filename = None):
+	def Open(self, filename = None):
 		if filename is None:	
 			filename = self.filename
 		self.ChangeFiles(filename)
 		self.operator = shelve.open(self.filename)
-		self.is_open = 1
+		self.isOpen = 1
 		
-	def close(self):
+	def Close(self):
 		self.operator.close()
-		self.is_open = 0
+		self.isOpen = 0
 		
-	def isOpen(self):
-		return self.is_open
+	def IsOpen(self):
+		return self.isOpen
 		#poor work-around... may not work if closes unexpectedly in app.
 	
-	def read(self, filename = None):
+	def Read(self, filename = None):
 		if filename is None:	
 			filename = self.filename
-		if self.is_open == False:
+		if self.isOpen == False:
 			print 'file not open. opening then reading...'
 			self.open(filename)
 		value = self.loadKey()
 		return value
 		
-	def write(self, value):
+	def Write(self, value):
 		self.saveKey(self.key, value)
 		
-	def saveKey(self, key = None, value = None):
+	def SaveKey(self, key = None, value = None):
 		if key == None:
 			key = self.key
 		if self.isOpen() == False:
@@ -53,7 +53,7 @@ class Shelf:
 			print 'WARNING: in savekey; shelf writing exception'
 			self.operator[key] = 'I AM HERE THANKS TO SAVE PROBLEM'
 			
-	def loadKey(self, key = None):
+	def LoadKey(self, key = None):
 		if key == None:
 			key = self.key
 		if self.isOpen() == False:
@@ -69,6 +69,6 @@ class Shelf:
 			value = 'I AM HERE BECAUSE KEY DOES NOT EXIST'
 		return value
 			
-	def ChangeFiles(self, new_filename):
-		self.filename = new_filename
+	def ChangeFiles(self, newFilename):
+		self.filename = newFilename
 		self.key = str(self.filename)

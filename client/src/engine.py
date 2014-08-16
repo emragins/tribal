@@ -15,9 +15,13 @@ class GameEngine:
 		
 		self.currentFrame = 0
 		
-		self.objectList = manager.Manager()
-
-	def mainLoop(self):
+		self.objectList0 = manager.Manager()
+		self.objectList1 = manager.Manager()
+		self.objectList2 = manager.Manager()
+		
+		self.objectLists = [self.objectList0, self.objectList1, self.objectList2]
+		
+	def MainLoop(self):
 		while 1:
 
 			if ika.GetTime() >= self.lastUpdate:
@@ -43,16 +47,21 @@ class GameEngine:
 				
 			self.fpsManager.render(self.Draw)	
 		
-	def AddObject(self, key, obj):
+	def AddObject(self, key, obj, priority):
 		
-		self.objectList.Add(key, obj)
+		self.objectLists[priority].Add(key, obj)
 
 	def Draw(self):
 		
-		self.objectList.Draw()
+		for list in reversed(self.objectLists):
+			list.Draw()
 
 	def Update(self):
-		
-		self.objectList.Update()
+		if len(data.kbControlList) != 0:
+			data.kbControlList[len(data.kbControlList) - 1].UpdateKeyboard()
+			
+		##probably doesn't need to be reversed--oh well
+		for list in reversed(self.objectLists):
+			list.Update()
 			
 engine = GameEngine()
