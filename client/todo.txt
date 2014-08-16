@@ -1,0 +1,12 @@
+Interface:
+Must:
+Mouse functionality
+	-don't know
+	-idea of trying to add mouse everything to each class that wants it doesn't seem right
+	
+Maybe:
+Window class
+	-would be inherited by message boxes, menus, pretty character portraits, etc.
+	-would be movable by user
+	-would have pretty 'X's for closing (also closed by 'esc')
+		-could be removed by inheriting class

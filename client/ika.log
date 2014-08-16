@@ -1,0 +1,24 @@
+ika 0.62 startup
+Built on Apr  7 2007
+--------------------------
+Initializing SDL
+Initializing Video
+Starting OpenGL video driver
+--Setting video mode
+--Initializing OpenGL
+--Disabling cursor
+Initializing Input
+Initializing sound
+Initing Python
+Executing system.py
+
+Traceback (most recent call last):
+  File ".\system.py", line 11, in <module>
+    from window import windowManager
+  File "src\window.py", line 4, in <module>
+    from mouse import mouse
+  File "src\mouse.py", line 14
+    def __init__:
+                ^
+SyntaxError: invalid syntax
+---- shutdown ----

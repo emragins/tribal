@@ -1,0 +1,16 @@
+(ika-game
+    (version '1.2')
+    (information
+        (title 'Hydration2')
+    )
+    (video
+        (xres '320')
+        (yres '240')
+    )
+    (resources
+        (maps 'maps/')
+    )
+    (meta
+	(models 'src.data')
+    )
+)
